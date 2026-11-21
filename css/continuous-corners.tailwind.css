@@ -1,0 +1,66 @@
+/*!
+ * css-continuous-corners, Tailwind CSS v4 edition.
+ * https://github.com/SeraphicQAQ/css-continuous-corners  (MIT License)
+ *
+ * In your main stylesheet:
+ *   @import "tailwindcss";
+ *   @import "./continuous-corners.tailwind.css";
+ *
+ * Then: <div class="rounded-surface p-3"><img class="rounded-concentric-3"></div>
+ * Tokens are the same as in continuous-corners.css; see the comments there.
+ */
+
+:root {
+  --radius-large: 1.75rem;
+  --radius-medium: 1.4rem;
+  --radius-block-base: 0.75rem;
+  --radius-concentric-min: 0.5rem;
+
+  --corner-k: 1;
+  --corner-scale: 1;
+  --concentric-factor: 1;
+}
+
+@supports (corner-shape: superellipse(2)) {
+  :root {
+    --corner-k: 2;
+    --corner-scale: 1.84;
+    --concentric-factor: 1.75;
+  }
+}
+
+:root {
+  --corner-shape: superellipse(var(--corner-k));
+  --radius-surface: calc(var(--radius-large) * var(--corner-scale));
+  --radius-surface-medium: calc(var(--radius-medium) * var(--corner-scale));
+  --radius-block: calc(var(--radius-block-base) * var(--corner-scale));
+}
+
+@utility rounded-surface {
+  border-radius: var(--radius-surface);
+  corner-shape: var(--corner-shape);
+}
+
+@utility rounded-surface-medium {
+  border-radius: var(--radius-surface-medium);
+  corner-shape: var(--corner-shape);
+}
+
+@utility rounded-block {
+  border-radius: var(--radius-block);
+  corner-shape: var(--corner-shape);
+}
+
+/* rounded-concentric-N: inset N spacing units (the N of p-N / top-N) from a surface's corner. */
+@utility rounded-concentric-* {
+  border-radius: max(
+    calc(var(--radius-surface) - var(--spacing) * --value(number) * var(--concentric-factor)),
+    var(--radius-concentric-min)
+  );
+  corner-shape: var(--corner-shape);
+}
+
+@utility rounded-inherit {
+  border-radius: inherit;
+  corner-shape: inherit;
+}
