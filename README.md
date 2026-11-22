@@ -1,7 +1,15 @@
 # CSS Continuous Corners
 
+**English** | [简体中文](README.zh-CN.md)
+
 Curvature-continuous rounded corners for the web, built on `corner-shape: superellipse()`.
 This is the corner system of [the AshZluX blog](https://blog.seraphic.top), packaged so you can reuse it.
+
+**TL;DR:** `corner-shape: superellipse(2)` draws the shape, but on its own it makes your corners *sharper* and your nested insets uneven. This repo adds what it needs:
+
+- **Radius × 1.84**, so each corner keeps its visual size ([rule 1](#the-three-rules))
+- **A concentric factor**, so insets stay evenly spaced: within 0.25 px, versus 1.9 px off with the plain `R − g` ([rule 2](#the-three-rules))
+- **A pitfall list** from a site-wide rollout: glass UI, pseudo-element rings, `clip-path` transitions and small controls ([Pitfalls](#pitfalls))
 
 **Read the paper: [Continuous Corners in CSS](https://blog.seraphic.top/posts/continuous-corners/)**. It covers the geometry, why `clip-path` and `mask` break glass UI, concentric offsets, and what a site-wide rollout measured.
 
@@ -137,4 +145,4 @@ References: [CSS Borders Level 4](https://drafts.csswg.org/css-borders-4/) · [T
 ## License
 
 - Code (`css/`, `js/`, `tools/`, `demo/`): [MIT](LICENSE).
-- Text and images (this README and `docs/`): [CC BY-NC-SA 4.0](LICENSE-docs.md), the same license as the blog post.
+- Text and images (this README, its Chinese translation and `docs/`): [CC BY-NC-SA 4.0](LICENSE-docs.md), the same license as the blog post.
