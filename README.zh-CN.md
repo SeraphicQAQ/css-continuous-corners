@@ -4,15 +4,17 @@
 
 基于 `corner-shape: superellipse()` 的网页连续曲率圆角。这是 [AshZluX 博客](https://blog.seraphic.top)使用的圆角系统，整理打包后方便你直接复用。
 
+**[在线演示](https://seraphicqaq.github.io/css-continuous-corners/demo/)**（需 Chrome 或 Edge 139+）· **[阅读论文](https://blog.seraphic.top/posts/continuous-corners/)**（英文）
+
+![转角从圆弧平滑变成连续曲率，曲率曲线也从带两处跳变的方框变成平滑的钟形](docs/images/compare.gif)
+
 **一句话总结：** `corner-shape: superellipse(2)` 能画出这种形状，但如果只加这一行，转角反而会变得*更尖*，嵌套元素的间距也会不均匀。这个仓库补上了缺少的部分：
 
 - **半径 × 1.84**，让每个转角保持原来的视觉大小（[规则 1](#三条规则)）
 - **同心系数**，让内嵌元素的间距保持均匀：误差在 0.25 px 以内，而直接用 `R − g` 会差 1.9 px（[规则 2](#三条规则)）
 - **一份踩坑清单**，来自全站实际铺开的经验：毛玻璃界面、伪元素描边、`clip-path` 过渡和小控件（[常见陷阱](#常见陷阱)）
 
-**阅读论文：[Continuous Corners in CSS](https://blog.seraphic.top/posts/continuous-corners/)**（英文）。论文讲解了几何原理、为什么 `clip-path` 和 `mask` 会破坏毛玻璃界面、同心偏移，以及全站铺开后的实测数据。
-
-![带连续曲率圆角的暖色磨砂玻璃叠层](docs/images/cover.jpg)
+论文 [Continuous Corners in CSS](https://blog.seraphic.top/posts/continuous-corners/)（英文）讲解了几何原理、为什么 `clip-path` 和 `mask` 会破坏毛玻璃界面、同心偏移，以及全站铺开后的实测数据。
 
 ## 为什么
 
@@ -27,7 +29,7 @@
 ## 效果展示
 
 - **在博客上看。** [blog.seraphic.top](https://blog.seraphic.top) 的所有卡片、面板、封面图和代码块都用了这套系统。请用 Chrome 或 Edge 139 及以上版本打开。
-- **看演示页。** [`demo/index.html`](demo/index.html) 是一个深色展示页，完全由本仓库的 CSS 绘制：一张带内嵌封面的玻璃卡片、多层同心嵌套的边框、并排的色块、轮廓叠加对比，以及曲率曲线。一个开关就能让所有形状在 `border-radius` 和 `corner-shape` 之间切换。无需构建，直接用 `file://` 打开即可：
+- **看演示页。** [`demo/index.html`](demo/index.html) 是一个深色展示页，完全由本仓库的 CSS 绘制：一张带内嵌封面的玻璃卡片、多层同心嵌套的边框、并排的色块、轮廓叠加对比，以及曲率曲线。一个开关就能让所有形状在 `border-radius` 和 `corner-shape` 之间切换。可以[在线打开](https://seraphicqaq.github.io/css-continuous-corners/demo/)，也可以在本地运行，无需构建，直接用 `file://` 打开即可：
 
   ```bash
   git clone https://github.com/SeraphicQAQ/css-continuous-corners.git

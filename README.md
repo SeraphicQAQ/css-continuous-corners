@@ -5,15 +5,17 @@
 Curvature-continuous rounded corners for the web, built on `corner-shape: superellipse()`.
 This is the corner system of [the AshZluX blog](https://blog.seraphic.top), packaged so you can reuse it.
 
+**[Live demo](https://seraphicqaq.github.io/css-continuous-corners/demo/)** (Chrome or Edge 139+) · **[Read the paper](https://blog.seraphic.top/posts/continuous-corners/)**
+
+![A corner morphs from a circle to a continuous corner while its curvature turns from a box with two jumps into a smooth bell](docs/images/compare.gif)
+
 **TL;DR:** `corner-shape: superellipse(2)` draws the shape, but on its own it makes your corners *sharper* and your nested insets uneven. This repo adds what it needs:
 
 - **Radius × 1.84**, so each corner keeps its visual size ([rule 1](#the-three-rules))
 - **A concentric factor**, so insets stay evenly spaced: within 0.25 px, versus 1.9 px off with the plain `R − g` ([rule 2](#the-three-rules))
 - **A pitfall list** from a site-wide rollout: glass UI, pseudo-element rings, `clip-path` transitions and small controls ([Pitfalls](#pitfalls))
 
-**Read the paper: [Continuous Corners in CSS](https://blog.seraphic.top/posts/continuous-corners/)**. It covers the geometry, why `clip-path` and `mask` break glass UI, concentric offsets, and what a site-wide rollout measured.
-
-![Warm frosted glass layers with continuous corners](docs/images/cover.jpg)
+The paper, [Continuous Corners in CSS](https://blog.seraphic.top/posts/continuous-corners/), covers the geometry, why `clip-path` and `mask` break glass UI, concentric offsets, and what a site-wide rollout measured.
 
 ## Why
 
@@ -28,7 +30,7 @@ The grey box on the right is the circle's curvature; the teal bell is the shippe
 ## See it
 
 - **On the blog.** [blog.seraphic.top](https://blog.seraphic.top) uses this system for every card, panel, cover image and code block. Open it in Chrome or Edge 139+.
-- **In the demo.** [`demo/index.html`](demo/index.html) is a dark showcase drawn by the real CSS in this repo: a glass card with an inset cover, nested concentric frames, side-by-side tiles, an outline overlay and the curvature profile. One switch flips every shape between `border-radius` and `corner-shape`. It needs no build step and works straight from `file://`:
+- **In the demo.** [`demo/index.html`](demo/index.html) is a dark showcase drawn by the real CSS in this repo: a glass card with an inset cover, nested concentric frames, side-by-side tiles, an outline overlay and the curvature profile. One switch flips every shape between `border-radius` and `corner-shape`. [Open it live](https://seraphicqaq.github.io/css-continuous-corners/demo/), or run it locally with no build step, straight from `file://`:
 
   ```bash
   git clone https://github.com/SeraphicQAQ/css-continuous-corners.git
